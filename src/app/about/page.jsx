@@ -1,0 +1,16 @@
+import Title from "@/components/Title";
+import Link from "next/link";
+
+const About = () => {
+  return (
+    <div>
+      <Title>Welcome to About Us</Title>
+      <nav className="space-x-5">
+        <Link href="/about/contact">Contact</Link>
+        <Link href="/about/team">Team</Link>
+      </nav>
+    </div>
+  );
+};
+
+export default About;
