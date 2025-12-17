@@ -1,7 +1,5 @@
-import StoryCard from "@/components/StoryCard";
-import Title from "@/components/Title";
-
-const Stories = () => {
+const StoryDetailsPage = async ({ params }) => {
+  const { id } = await params;
   const devStories = [
     {
       id: 1,
@@ -70,17 +68,56 @@ const Stories = () => {
     },
   ];
 
+  const singleStory = devStories.find((story) => story.id === Number(id));
+  if (!singleStory) return <h2>Story not Found</h2>;
+  console.log(singleStory);
   return (
-    <div className="space-y-4">
-      <Title>Welcome to Stories</Title>
+    <div className="max-w-3xl mx-auto shadow-md rounded-lg p-6 border border-gray-200">
+      {/* Top Section */}
+      <div className="flex items-center gap-5">
+        <img
+          src={singleStory.image}
+          alt={singleStory.name}
+          className="w-24 h-24 rounded-full object-cover"
+        />
+        <div>
+          <h1 className="text-2xl font-semibold">{singleStory.name}</h1>
+          <p className="text-gray-700">{singleStory.designation}</p>
+          <p className="text-blue-600">{singleStory.company}</p>
+          <p className="text-gray-600 mt-1">
+            Experience: {singleStory.experience}
+          </p>
+        </div>
+      </div>
 
-      <div className="grid grid-cols-4 gap-4">
-        {devStories.map((story) => (
-          <StoryCard key={story.id} story={story} />
-        ))}
+      {/* Story */}
+      <div className="mt-6">
+        <h2 className="text-xl font-semibold mb-2">Learning Story</h2>
+        <p className="text-gray-700 leading-relaxed">{singleStory.story}</p>
+      </div>
+
+      {/* About */}
+      <div className="mt-6">
+        <h2 className="text-xl font-semibold mb-2">About Developer</h2>
+        <p className="text-gray-700 leading-relaxed">{singleStory.about}</p>
+      </div>
+
+      {/* Skills */}
+      <div className="mt-6">
+        <h2 className="text-xl font-semibold mb-2">Skills</h2>
+        <div className="flex flex-wrap gap-2">
+          {singleStory.skills.map((skill, index) => (
+            <span
+              key={index}
+              className="bg-gray-800 px-3 py-1 rounded-full text-sm"
+            >
+              {skill}
+            </span>
+          ))}
+        </div>
       </div>
     </div>
   );
 };
 
-export default Stories;
+export default StoryDetailsPage;
