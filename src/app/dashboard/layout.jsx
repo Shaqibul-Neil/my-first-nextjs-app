@@ -4,7 +4,11 @@ const DashboardLayout = ({ children }) => {
   return (
     <div className="grid grid-cols-12 gap-5 min-h-screen">
       <div className="col-span-3 border-r-2 space-y-10">
-        <h2>Navigation</h2>
+        <div>
+          <Link href={"/"} className="text-lg font-semibold">
+            Dev-story
+          </Link>
+        </div>
         <div className="flex flex-col gap-5">
           <Link
             href={"/dashboard/add-story"}
